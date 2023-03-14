@@ -73,6 +73,12 @@ createApp({
                 this.activeIndex--;
             };
 
+        },
+
+        thumbClick(index) {
+
+            this.activeIndex = index;
+
         }
 
     }
