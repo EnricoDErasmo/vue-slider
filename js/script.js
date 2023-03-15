@@ -42,6 +42,8 @@ createApp({
 
             activeIndex : 0,
 
+            timer: {},
+
         }
     
     },
@@ -52,7 +54,7 @@ createApp({
 
         nextSlide() {
 
-            if (this.activeIndex == this.slides.length - 1) {
+            if (this.activeIndex >= this.slides.length - 1) {
 
                 this.activeIndex = 0;
 
@@ -64,7 +66,7 @@ createApp({
 
         prevSlide() {
 
-            if (this.activeIndex == 0) {
+            if (this.activeIndex <= 0) {
 
                 this.activeIndex = this.slides.length - 1;
 
@@ -79,8 +81,34 @@ createApp({
 
             this.activeIndex = index;
 
-        }
+        },
 
+        stopTimer() {
+
+            clearInterval(this.timer);
+
+        },
+
+        startTimer() {
+
+            this.timer = setInterval(()=>{
+
+                this.nextSlide();
+    
+            }, 3000);
+
+
+        },
+
+    },
+
+    mounted(){
+
+       this.timer = setInterval(()=>{
+
+            this.nextSlide();
+
+        }, 3000);
     }
 
   }).mount('#app')
